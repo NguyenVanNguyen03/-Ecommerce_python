@@ -21,11 +21,5 @@
             "src": "/(.*)",
             "dest": "fruitables/wsgi.py"
         }
-    ],
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
-        }
     ]
 }
