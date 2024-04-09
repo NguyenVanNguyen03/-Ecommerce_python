@@ -1,6 +1,7 @@
 from rest_framework import views
 from rest_framework.response import Response
 from django.http import Http404
+from django.shortcuts import render
 # from django.contrib.auth.models import User
 from .serializers import (
     CategorySerializer,
@@ -16,6 +17,16 @@ from rest_framework.permissions import AllowAny, IsAdminUser, IsAuthenticated
 # from django.contrib.auth.models import User
 from django.contrib.auth import get_user_model
 User = get_user_model()
+
+
+from .models import Product
+
+def product(request):
+    product = Product.objects.all()
+    # Render the base.html template
+    return render(request, 'product.html', {'product': product})
+
+
 
 
 class CategoryAPIView(views.APIView):
