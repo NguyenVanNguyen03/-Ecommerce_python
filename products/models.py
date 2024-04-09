@@ -29,23 +29,20 @@ class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     unit = models.CharField(max_length=3)
-    # Sử dụng FloatField, IntegerField để tạo trường kiểu số
     price = models.FloatField()
     discount = models.IntegerField()
     amount = models.IntegerField()
-    # Sử dụng BooleanField để tạo trường kiểu boolean true / false
     is_public = models.BooleanField()
     thumbnail = models.CharField(max_length=128)
-    # sử dụng ForeignKey để khai báo một field là khóa ngoại từ một bảng khác
-    # on_delete=models.CASCADE để mô tả khi bảng category bị xóa một record...
-    # thì tất cả record product có id tương ứng sẽ bị xóa theo
-    # related_name thể hiện khi query ở bảng category...
-    # tất cả các record product con sẽ được hiển thị trong một mảng có tên là products
-    category_id = models.ForeignKey(Category, on_delete=models.CASCADE,
-                                    related_name='products', null=False)
+    category_id = models.ForeignKey('Category', on_delete=models.CASCADE, related_name='products', null=False)
     created_at = models.DateTimeField(default=timezone.now)
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True)
+
+    @classmethod
+    def get_public_products(cls):
+        # Phương thức này trả về tất cả các sản phẩm có is_public=True
+        return cls.objects.filter(is_public=True)
 
 
 class Meta:
