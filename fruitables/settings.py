@@ -32,7 +32,9 @@ SECRET_KEY = 'django-insecure-rx!@3riu2qhoc06h!nqoka2@&$$)_ve@#2wa#tp5gs#^n(9^uz
 DEBUG = False
 
 ALLOWED_HOSTS = ['.vercel.app', 'http://localhost:5173', '127.0.0.1', 'client-web-coffee.vercel.app']
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://client-web-coffee.vercel.app/']
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://client-web-coffee.vercel.app']
 
 # Application definition
 
@@ -53,6 +55,7 @@ INSTALLED_APPS = [
     'orders',
     'drf_yasg',
     'whitenoise.runserver_nostatic',
+    'corsheaders',
     'home'
 ]
 
@@ -169,6 +172,7 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
         'rest_framework.permissions.AllowAny',
     ),
+
 }
 SIMPLE_JWT = {
     # Thay đổi thời gian hết hạn của token
