@@ -16,3 +16,7 @@ class UserAccountUpdateView(views.APIView):
             serializer.save()
             return custom_response('Update user successfully!', 'Success', serializer.data, 200)
         return custom_response('Update user failed!', 'Error', serializer.errors, 400)
+    def delete(self, request, *args, **kwargs):
+            user = request.user
+            user.delete()
+            return custom_response('User deleted successfully!', 'Success', None, 204)
