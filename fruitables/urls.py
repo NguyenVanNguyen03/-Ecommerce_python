@@ -19,8 +19,9 @@ from django.urls import include, path
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
+from orders.views import OrderAPIView, OrderDetailAPIView, OrderDetailWithProductAPIView, OrderDetailWithProductDetailAPIView
 
-
+ 
 schema_view = get_schema_view(
     openapi.Info(
         title="Ecommerce API",
@@ -48,7 +49,14 @@ urlpatterns = [
     path('api/v1/', include('djoser.urls')),
     path('api/v1/', include('djoser.urls.jwt')),
 
+
     path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
+
+
+    path("api/v1/orders/", OrderAPIView.as_view(), name='order-list'),
+    path("api/v1/orders/<slug:id_slug>/", OrderDetailAPIView.as_view(), name='order-detail'),
+    path("api/v1/orders/<slug:order_id_slug>/detail/", OrderDetailWithProductAPIView.as_view(), name='order-detail-with-product'),
+    path("api/v1/orders/<slug:order_id_slug>/detail/<slug:id_slug>/", OrderDetailWithProductDetailAPIView.as_view(), name='order-detail-with-product-detail'),
 ]

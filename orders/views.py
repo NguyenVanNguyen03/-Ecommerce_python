@@ -4,7 +4,7 @@ from django.http import Http404
 from .models import Order, OrderDetail
 from .serializers import OrderSerializer, OrderDetailSerializer
 from products.models import Product
-from backend_ecommerce.helpers import custom_response, parse_request  # Assuming these are defined correctly
+from fruitables.helpers import custom_response, parse_request  # Assuming these are defined correctly
 
 class OrderAPIView(views.APIView):
     permission_classes = [AllowAny]
@@ -25,7 +25,7 @@ class OrderAPIView(views.APIView):
             user = User.objects.get(id=data['user_id'])
             order = Order.objects.create(
                 receiver_name=data['receiver_name'],
-                receiver_phone=data['receiver_phone'],
+                receiver_phone=data['receiver_phone'], 
                 receiver_address=data['receiver_address'],
                 description=data['description'],
                 user_id=user
