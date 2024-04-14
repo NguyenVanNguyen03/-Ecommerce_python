@@ -17,6 +17,10 @@ class UserAccountUpdateView(views.APIView):
             return custom_response('Update user successfully!', 'Success', serializer.data, 200)
         return custom_response('Update user failed!', 'Error', serializer.errors, 400)
     def delete(self, request, *args, **kwargs):
-            user = request.user
+        user_id = request.user.id
+        try:
+            user = UserAccount.objects.get(pk=user_id)
             user.delete()
-            return custom_response('User deleted successfully!', 'Success', None, 204)
+            return Response({'message': 'User deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+        except UserAccount.DoesNotExist:
+            return Response({'error': 'User not found!'}, status=status.HTTP_404_NOT_FOUND)
