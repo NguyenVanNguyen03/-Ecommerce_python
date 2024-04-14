@@ -31,10 +31,6 @@ SECRET_KEY = 'django-insecure-rx!@3riu2qhoc06h!nqoka2@&$$)_ve@#2wa#tp5gs#^n(9^uz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.vercel.app', 'http://localhost:5173', '127.0.0.1', 'client-web-coffee.vercel.app']
-CORS_ALLOW_ALL_ORIGINS = True
-
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://client-web-coffee.vercel.app']
 
 # Application definition
 
@@ -148,6 +144,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / "staticfiles_build"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+
+
+ALLOWED_HOSTS = ['.vercel.app', 'http://localhost:5173', '127.0.0.1', 'client-web-coffee.vercel.app']
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'https://client-web-coffee.vercel.app']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
