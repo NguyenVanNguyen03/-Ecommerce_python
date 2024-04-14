@@ -105,7 +105,8 @@ class ProductViewAPI(views.APIView):
                 discount=data['discount'],
                 amount=data['amount'],
                 thumbnail=data['thumbnail'],
-                category_id=category
+                category_id=category,
+                is_public=data['is_public']
             )
             product.save()
             serializer = ProductSerializer(product)
