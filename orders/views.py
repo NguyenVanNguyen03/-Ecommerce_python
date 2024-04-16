@@ -75,15 +75,6 @@ class OrderDetailAPIView(views.APIView):
         except Exception as e:
             return custom_response('Failed to update order!', 'Error', str(e), 500)
 
-    def delete(self, request, id_slug):
-        try:
-            order = self.get_object(id_slug)
-            order.delete()
-            return custom_response('Delete order successfully!', 'Success', {"order_id": id_slug}, 204)
-        except Order.DoesNotExist:
-            return custom_response('Order not found!', 'Error', None, 404)
-        except Exception as e:
-            return custom_response('Failed to delete order!', 'Error', str(e), 500)
 
 class OrderDetailWithProductAPIView(views.APIView):
     permission_classes = [AllowAny]
