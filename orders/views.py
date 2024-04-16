@@ -24,8 +24,8 @@ class OrderAPIView(views.APIView):
             data = parse_request(request)
             # Cập nhật thông tin user từ data['user_id']
             # Lưu ý: Cần import User model từ Django
-            from django.contrib.auth.models import User
-            user = User.objects.get(id=data['user_id'])
+            from user.models import UserAccount
+            user = UserAccount.objects.get(id=data['user_id'])
             
             # Tạo đơn hàng với thông tin từ data
             order = Order.objects.create(
@@ -38,6 +38,7 @@ class OrderAPIView(views.APIView):
             serializer = OrderSerializer(order)
             return custom_response('Create order successfully!', 'Success', serializer.data, 201)
         except Exception as e:
+            print(e)
             return custom_response('Failed to create order!', 'Error', str(e), 400)
         
 class OrderDetailAPIView(views.APIView):
