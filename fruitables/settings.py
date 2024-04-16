@@ -51,8 +51,7 @@ INSTALLED_APPS = [
     'orders',
     'drf_yasg',
     'whitenoise.runserver_nostatic',
-    'corsheaders',
-    'home'
+    'corsheaders'
 ]
 
 
