@@ -32,6 +32,9 @@ class OrderAPIView(views.APIView):
                 receiver_name=data['receiver_name'],
                 receiver_phone=data['receiver_phone'], 
                 receiver_address=data['receiver_address'],
+                is_ordered = data['is_ordered'],
+                is_paid = data['is_paid'],
+                total=  data['total'],
                 description=data['description'],
                 user_id=user
             )
